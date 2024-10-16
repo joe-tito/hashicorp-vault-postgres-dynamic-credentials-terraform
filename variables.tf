@@ -5,3 +5,7 @@ variable "vault_address" {
 variable "vault_token" {
   type = string
 }
+
+variable "postgress_connection_url" {
+  type = string
+}

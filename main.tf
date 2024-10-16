@@ -33,29 +33,30 @@ resource "hcp_vault_cluster" "learn_hcp_vault" {
 
 ## Vault
 
-resource "vault_mount" "kvv2" {
-  path        = "kvv2"
-  type        = "kv"
-  options     = { version = "2" }
-  description = "KV Version 2 secret engine mount"
+resource "vault_mount" "database" {
+  path = "database"
+  type = "database"
 }
 
-resource "vault_kv_secret_v2" "example" {
-  mount               = vault_mount.kvv2.path
-  name                = "secret"
-  cas                 = 1
-  delete_all_versions = true
-  data_json = jsonencode(
-    {
-      zip = "zap",
-      foo = "bar"
-    }
-  )
-  custom_metadata {
-    max_versions = 5
-    data = {
-      foo = "vault@example.com",
-      bar = "12345"
-    }
+resource "vault_database_secret_backend_connection" "postgres" {
+  backend       = vault_mount.database.path
+  name          = "demo-postgresql-database"
+  plugin_name   = "postgresql-database-plugin"
+  allowed_roles = ["demo-role"]
+
+  postgresql {
+    connection_url = var.postgress_connection_url
   }
+}
+
+resource "vault_database_secret_backend_role" "role" {
+  backend = vault_mount.database.path
+  name    = "demo-role"
+  db_name = vault_database_secret_backend_connection.postgres.name
+  creation_statements = [
+    "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';",
+    "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"
+  ]
+  default_ttl = 30
+  max_ttl     = 60
 }
