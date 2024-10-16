@@ -35,12 +35,13 @@ data "aws_arn" "main" {
 
 
 
-# data "aws_vpc" "default" {
-#   default = true
-# }
+data "aws_vpc" "main" {
+  default = true
+}
 
 resource "aws_security_group" "all_inbound" {
-  vpc_id      = data.aws_vpc.default.id
+  # vpc_id      = data.aws_vpc.default.id  module.vp
+  vpc_id      = module.vpc.default_vpc_id
   name        = "uddin"
   description = "Allow all inbound for Postgres"
   ingress {
