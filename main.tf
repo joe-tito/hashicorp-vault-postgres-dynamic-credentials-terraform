@@ -8,12 +8,20 @@ terraform {
       source  = "hashicorp/vault"
       version = "4.4.0"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
   }
 }
 
 provider "vault" {
   address = var.vault_address
   token   = var.vault_token
+}
+
+provider "aws" {
+  region = "us-east-1"
 }
 
 ### HCP
@@ -29,6 +37,34 @@ resource "hcp_vault_cluster" "learn_hcp_vault" {
   cluster_id      = "demo-cluster"
   tier            = "dev"
   public_endpoint = true
+}
+
+## AWS
+
+data "aws_vpc" "default" {
+  default = true
+}
+
+resource "aws_security_group" "all_inbound" {
+  vpc_id      = data.aws_vpc.default.id
+  name        = "uddin"
+  description = "Allow all inbound for Postgres"
+  ingress {
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_db_instance" "default" {
+  allocated_storage = 10
+  db_name           = "postgres"
+  engine            = "postgres"
+  engine_version    = "12.5"
+  instance_class    = "db.t3.micro"
+  username          = "root"
+  password          = "password"
 }
 
 ## Vault
