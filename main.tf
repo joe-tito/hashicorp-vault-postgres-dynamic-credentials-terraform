@@ -19,3 +19,4 @@ resource "hcp_vault_cluster" "learn_hcp_vault" {
   tier            = "dev"
   public_endpoint = true
 }
+ 
