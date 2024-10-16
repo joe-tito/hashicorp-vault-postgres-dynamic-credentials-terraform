@@ -8,7 +8,7 @@ resource "hcp_hvn" "demo_hvn" {
 resource "hcp_aws_network_peering" "demo_peering" {
   hvn_id          = hcp_hvn.demo_hvn.hvn_id
   peering_id      = "hcp-tf-demo-peering"
-  peer_vpc_id     = module.vpc.default_vpc_id
+  peer_vpc_id     = module.vpc.vpc_id
   peer_account_id = module.vpc.vpc_owner_id
   peer_vpc_region = data.aws_arn.main.region
 }
