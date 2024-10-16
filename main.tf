@@ -95,4 +95,6 @@ resource "vault_database_secret_backend_role" "role" {
   ]
   default_ttl = 30
   max_ttl     = 60
+
+  depends_on = [aws_db_instance.default]
 }
