@@ -1,4 +1,4 @@
-variable "vault_adddress" {
+variable "vault_address" {
   type = string
 }
 
