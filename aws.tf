@@ -18,31 +18,9 @@ module "vpc" {
   }
 }
 
-data "aws_arn" "main" {
-  arn = module.vpc.vpc_arn
-}
-
-
-
-
-
-
-
-
-
-
-## AWS
-
-
-
-data "aws_vpc" "main" {
-  default = true
-}
-
 resource "aws_security_group" "all_inbound" {
-  # vpc_id      = data.aws_vpc.default.id  module.vp
   vpc_id      = module.vpc.default_vpc_id
-  name        = "uddin"
+  name        = "all_inbound"
   description = "Allow all inbound for Postgres"
   ingress {
     from_port   = 5432
