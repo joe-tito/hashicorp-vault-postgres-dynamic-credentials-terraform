@@ -11,6 +11,13 @@ terraform {
   }
 }
 
+provider "vault" {
+  address = var.vault_adddress
+  token   = var.vault_token
+}
+
+### HCP
+
 resource "hcp_hvn" "demo_hvn" {
   hvn_id         = "demo-hvn"
   cloud_provider = "aws"
@@ -23,6 +30,8 @@ resource "hcp_vault_cluster" "learn_hcp_vault" {
   tier            = "dev"
   public_endpoint = true
 }
+
+## Vault
 
 resource "vault_mount" "kvv2" {
   path        = "kvv2"
