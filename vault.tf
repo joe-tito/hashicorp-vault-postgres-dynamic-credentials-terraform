@@ -1,3 +1,4 @@
+// Mount the database engine
 resource "vault_mount" "database" {
   path = "database"
   type = "database"
@@ -5,6 +6,7 @@ resource "vault_mount" "database" {
   depends_on = [aws_db_instance.default]
 }
 
+// Establish connection between database engine and postgres
 resource "vault_database_secret_backend_connection" "postgres" {
   backend       = vault_mount.database.path
   name          = "demo-postgresql-database"
@@ -16,6 +18,7 @@ resource "vault_database_secret_backend_connection" "postgres" {
   }
 }
 
+// Create role used to create dynamic db users
 resource "vault_database_secret_backend_role" "role" {
   backend = vault_mount.database.path
   name    = "demo-role"

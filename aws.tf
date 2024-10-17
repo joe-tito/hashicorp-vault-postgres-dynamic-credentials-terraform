@@ -1,3 +1,4 @@
+// Build base VPC
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.13.0"
@@ -13,6 +14,7 @@ module "vpc" {
   enable_vpn_gateway = false
 }
 
+// Create security group that only allows postgres traffic from one IP
 resource "aws_security_group" "all_inbound" {
   vpc_id      = module.vpc.default_vpc_id
   name        = "all_inbound"
@@ -26,6 +28,7 @@ resource "aws_security_group" "all_inbound" {
   }
 }
 
+// Create Postgres DB
 resource "aws_db_instance" "default" {
   allocated_storage   = 10
   db_name             = "postgres"
@@ -34,7 +37,8 @@ resource "aws_db_instance" "default" {
   instance_class      = "db.t3.micro"
   username            = var.postgres_user
   password            = var.postgres_password
-  publicly_accessible = true
+  publicly_accessible = true # Exposing for demo purposes, probably don't do this in practice
+
   vpc_security_group_ids = [
     aws_security_group.all_inbound.id
   ]

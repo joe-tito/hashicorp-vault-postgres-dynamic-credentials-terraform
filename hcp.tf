@@ -10,5 +10,5 @@ resource "hcp_vault_cluster" "demo_cluster" {
   hvn_id          = hcp_hvn.demo_hvn.hvn_id
   cluster_id      = "demo-cluster"
   tier            = "dev"
-  public_endpoint = true # Exposing for demo purposed, don't do this in practice
+  public_endpoint = true # Exposing for demo purposes, probably don't do this in practice
 }
