@@ -34,4 +34,7 @@ resource "aws_db_instance" "default" {
   username            = var.postgres_user
   password            = var.postgres_password
   publicly_accessible = true
+  vpc_security_group_ids = [
+    aws_security_group.all_inbound.id
+  ]
 }
