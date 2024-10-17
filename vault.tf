@@ -1,4 +1,4 @@
-// Mount the database engine
+// Mount database engine
 resource "vault_mount" "database" {
   path = "database"
   type = "database"
@@ -18,7 +18,7 @@ resource "vault_database_secret_backend_connection" "postgres" {
   }
 }
 
-// Create role used to create dynamic db users
+// Create role to create dynamic postgres database users. Super short TTL for demo purposes.
 resource "vault_database_secret_backend_role" "role" {
   backend = vault_mount.database.path
   name    = "demo-role"
