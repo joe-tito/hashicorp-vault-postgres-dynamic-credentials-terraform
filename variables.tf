@@ -15,14 +15,10 @@ variable "vault_approle_secret_id" {
   type = string
 }
 
-# # variable "vault_token" {
-# #   type = string
-# # }
+variable "postgres_user" {
+  type = string
+}
 
-# variable "postgres_user" {
-#   type = string
-# }
-
-# variable "postgres_password" {
-#   type = string
-# }
+variable "postgres_password" {
+  type = string
+}
