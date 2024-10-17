@@ -12,6 +12,6 @@ resource "hcp_vault_cluster" "demo_cluster" {
   public_endpoint = true
 }
 
-data "hcp_vault_cluster" "demo_cluster_data" {
-  cluster_id = hcp_vault_cluster.demo_cluster.id
-}
+# data "hcp_vault_cluster" "demo_cluster_data" {
+#   cluster_id = hcp_vault_cluster.demo_cluster.id
+# }
