@@ -3,9 +3,17 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-# variable "vault_address" {
-#   type = string
-# }
+variable "vault_address" {
+  type = string
+}
+
+variable "vault_approle_role_id" {
+  type = string
+}
+
+variable "vault_approle_secret_id" {
+  type = string
+}
 
 # # variable "vault_token" {
 # #   type = string

@@ -15,10 +15,18 @@ terraform {
   }
 }
 
-# provider "vault" {
-#   address = var.vault_address
-#   token   = var.vault_token
-# }
+provider "vault" {
+  address = var.vault_address
+
+  auth_login {
+    path = "auth/approle/login"
+
+    parameters = {
+      role_id   = var.vault_approle_role_id
+      secret_id = var.vault_approle_secret_id
+    }
+  }
+}
 
 provider "aws" {
   region = var.aws_region
