@@ -12,7 +12,7 @@ resource "vault_database_secret_backend_connection" "postgres" {
   allowed_roles = ["demo-role"]
 
   postgresql {
-    connection_url = "postgresql://${aws_db_instance.default.username}:${aws_db_instance.default.password}@${aws_db_instance.default.endpoint}/${aws_db_instance.default.db_name}"
+    connection_url = "postgresql://${var.postgres_user}:${var.postgres_password}@${aws_db_instance.default.endpoint}/postgres"
   }
 }
 
