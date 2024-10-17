@@ -25,16 +25,16 @@ resource "aws_security_group" "all_inbound" {
   }
 }
 
-# resource "aws_db_instance" "default" {
-#   allocated_storage   = 10
-#   db_name             = "postgres"
-#   engine              = "postgres"
-#   engine_version      = "16.4"
-#   instance_class      = "db.t3.micro"
-#   username            = var.postgres_user
-#   password            = var.postgres_password
-#   publicly_accessible = true
-#   vpc_security_group_ids = [
-#     aws_security_group.all_inbound.id
-#   ]
-# }
+resource "aws_db_instance" "default" {
+  allocated_storage   = 10
+  db_name             = "postgres"
+  engine              = "postgres"
+  engine_version      = "16.4"
+  instance_class      = "db.t3.micro"
+  username            = var.postgres_user
+  password            = var.postgres_password
+  publicly_accessible = true
+  vpc_security_group_ids = [
+    aws_security_group.all_inbound.id
+  ]
+}
