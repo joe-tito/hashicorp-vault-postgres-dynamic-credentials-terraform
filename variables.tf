@@ -7,11 +7,7 @@ variable "vault_address" {
   type = string
 }
 
-variable "vault_approle_role_id" {
-  type = string
-}
-
-variable "vault_approle_secret_id" {
+variable "vault_token" {
   type = string
 }
 
