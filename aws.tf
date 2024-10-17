@@ -18,10 +18,11 @@ resource "aws_security_group" "all_inbound" {
   name        = "all_inbound"
   description = "Allow all inbound for Postgres"
   ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    from_port = 5432
+    to_port   = 5432
+    protocol  = "tcp"
+
+    cidr_blocks = ["75.68.149.137/32"] # Only allow my IP for demo
   }
 }
 
