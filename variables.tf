@@ -7,9 +7,9 @@ variable "vault_address" {
   type = string
 }
 
-variable "vault_token" {
-  type = string
-}
+# variable "vault_token" {
+#   type = string
+# }
 
 variable "postgres_user" {
   type = string
