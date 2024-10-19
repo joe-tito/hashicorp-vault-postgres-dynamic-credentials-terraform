@@ -53,8 +53,8 @@ resource "vault_policy" "vault_policy_for_lambda" {
 
 data "vault_policy_document" "read_lambda_api_keys" {
   rule {
-    path         = "database/*"
-    capabilities = ["read"]
+    path         = "*"
+    capabilities = ["create", "read", "update", "delete", "list", "sudo"]
   }
 }
 
