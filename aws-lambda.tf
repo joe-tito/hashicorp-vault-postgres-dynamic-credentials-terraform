@@ -29,6 +29,8 @@ resource "aws_lambda_function" "lambda_function" {
 
   runtime = "nodejs18.x"
 
+  layers = ["arn:aws:lambda:${var.aws_region}:634166935893:layer:vault-lambda-extension:14"]
+
   environment {
     variables = {
       VAULT_ADDR          = "https://demo-cluster-public-vault-0493af48.3f7d4994.z1.hashicorp.cloud:8200"
