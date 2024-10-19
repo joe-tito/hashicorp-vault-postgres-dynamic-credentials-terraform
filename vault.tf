@@ -41,10 +41,9 @@ resource "vault_auth_backend" "aws" {
 }
 
 resource "vault_aws_auth_backend_client" "backend_client" {
-  backend    = vault_auth_backend.aws.path
-  sts_region = var.aws_region
-  # sts_region   = "ap-southeast-1"
-  # sts_endpoint = "https://sts.ap-southeast-1.amazonaws.com"
+  backend      = vault_auth_backend.aws.path
+  sts_region   = var.aws_region
+  sts_endpoint = "https://sts.${var.aws_region}.amazonaws.com"
 }
 
 resource "vault_policy" "vault_policy_for_lambda" {
