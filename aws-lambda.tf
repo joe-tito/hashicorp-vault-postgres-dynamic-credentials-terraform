@@ -4,7 +4,7 @@ module "lambda_function" {
 
   function_name = "vault-lambda-function"
   handler       = "index.handler"
-  source_path   = data.archive_file.output_path
+  source_path   = "${path.root}/lambda.zip"
   runtime       = "nodejs20.x"
   memory_size   = "128"
   create_role   = false
