@@ -44,6 +44,7 @@ resource "vault_aws_auth_backend_client" "backend_client" {
   backend      = vault_auth_backend.aws.path
   sts_region   = var.aws_region
   sts_endpoint = "https://sts.${var.aws_region}.amazonaws.com"
+  depends_on   = [module.lambda_function]
 }
 
 resource "vault_policy" "vault_policy_for_lambda" {
