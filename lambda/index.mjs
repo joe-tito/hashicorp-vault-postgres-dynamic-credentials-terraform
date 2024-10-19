@@ -1,61 +1,15 @@
 import Vault from 'node-vault';
 
-const {
-    VAULT_SECRET_PATH,
-    VAULT_PROXY_SERVER_HOST,
-    VAULT_TOKEN
-} = process.env;
-
-
 export const handler = async (event, context) => {
 
-    // var options = {
-    //     apiVersion: 'v1', // default
-    //     endpoint: , // default
-    //     token: VAULT_TOKEN // optional client token; can be fetched after valid initialization of the server
-    // };
+    var vault = Vault({
+        apiVersion: 'v1',
+        endpoint: 'https://demo-cluster-public-vault-0493af48.3f7d4994.z1.hashicorp.cloud:8200',
+        token: process.env.VAULT_TOKEN, // Using token for demo purposes only. Use more secure auth method in practice
+        namespace: 'admin'
+    })
 
-        // get new instance of the client
-        var vault = Vault({
-            apiVersion: 'v1',
-            endpoint: 'https://demo-cluster-public-vault-0493af48.3f7d4994.z1.hashicorp.cloud:8200',
-            token: VAULT_TOKEN,
-            namespace: 'admin'
-        })
-
-        const secret = await vault.read('database/creds/demo-role');
-        
-        console.log(secret);
-
-//     const vault = Vault({
-//         apiVersion: 'v1',
-//         endpoint: VAULT_PROXY_SERVER_HOST,
-//         extension: {
-//             awsLambda: {
-//                 functionName: 'vault-lambda-function',
-//                 logLevel: 'trace'
-//             }
-//         }
-//     });
+    const secret = await vault.read('database/creds/demo-role');
     
-//     console.log("Reading Data")
-//     console.log(VAULT_SECRET_PATH);
-
-//     try {
-//         console.log("Read From Proxy Server")
-
-//         const secret = await vault.read(VAULT_SECRET_PATH);
-//         console.log(secret.err)
-
-//         console.log(secret);
-
-//         console.log(`secret1: ${secret.data.data['secret1']}`);
-//         console.log(`secret2: ${secret.data.data['secret2']}`);
-//     }
-//     catch (err) {
-//         console.log(err)
-//         console.log(err.message);
-//         console.log(err.response);
-//     }
-//     console.log("Finished Reading Data")
+    console.log(secret);
 }

@@ -1,22 +1,3 @@
-# module "lambda_function" {
-#   source  = "terraform-aws-modules/lambda/aws"
-#   version = "~>5.3"
-
-#   function_name = "vault-lambda-function"
-#   handler       = "index.handler"
-#   source_path   = "${path.module}/lambda/lambda.zip"
-#   runtime       = "nodejs18.x"
-#   memory_size   = "128"
-#   create_role   = false
-#   lambda_role   = module.lambda_execution_role.iam_role_arn
-
-#   environment_variables = {
-
-#   }
-
-#   layers = ["arn:aws:lambda:${var.aws_region}:634166935893:layer:vault-lambda-extension:16"]
-# }
-
 resource "aws_lambda_function" "lambda_function" {
   filename      = "${path.module}/lambda/lambda.zip"
   function_name = "vault-lambda-function"
@@ -40,6 +21,11 @@ resource "aws_lambda_function" "lambda_function" {
       VAULT_TOKEN         = var.vault_token
     }
   }
+}
+
+resource "aws_lambda_function_url" "lambda_function_url" {
+  function_name      = aws_lambda_function.lambda_function.arn
+  authorization_type = "NONE"
 }
 
 data "archive_file" "zip_lambda" {
