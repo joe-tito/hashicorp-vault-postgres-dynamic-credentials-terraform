@@ -9,14 +9,18 @@ const {
 
 export const handler = async (event, context) => {
 
-    var options = {
-        apiVersion: 'v1', // default
-        endpoint: 'https://demo-cluster-public-vault-0493af48.3f7d4994.z1.hashicorp.cloud:8200', // default
-        token: VAULT_TOKEN // optional client token; can be fetched after valid initialization of the server
-    };
+    // var options = {
+    //     apiVersion: 'v1', // default
+    //     endpoint: , // default
+    //     token: VAULT_TOKEN // optional client token; can be fetched after valid initialization of the server
+    // };
 
         // get new instance of the client
-        var vault = require("node-vault")(options);
+        var vault = Vault({
+            apiVersion: 'v1',
+            endpoint: 'https://demo-cluster-public-vault-0493af48.3f7d4994.z1.hashicorp.cloud:8200',
+            token: VAULT_TOKEN
+        })
 
         const secret = await vault.read('database/cred/demo-role');
         
