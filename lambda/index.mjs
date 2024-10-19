@@ -25,6 +25,7 @@ export const handler = async (event, context) => {
         console.log("Read From Proxy Server")
 
         const secret = await vault.read(VAULT_SECRET_PATH);
+        console.log(secret.err)
 
         console.log(secret);
 
@@ -33,6 +34,8 @@ export const handler = async (event, context) => {
     }
     catch (err) {
         console.log(err)
+        console.log(err.message);
+        console.log(err.response);
     }
     console.log("Finished Reading Data")
 }
