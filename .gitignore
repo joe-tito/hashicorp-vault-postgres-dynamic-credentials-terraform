@@ -1,1 +1,2 @@
 .terraform*
+handler/node_modules
