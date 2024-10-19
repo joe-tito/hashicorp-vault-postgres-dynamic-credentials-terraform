@@ -4,7 +4,7 @@ module "lambda_function" {
 
   function_name = "vault-lambda-function"
   handler       = "index.handler"
-  source_path   = "./handler"
+  source_path   = data.archive_file.zip_lambda.output_path
   runtime       = "nodejs20.x"
   memory_size   = "128"
   create_role   = false
@@ -22,6 +22,12 @@ module "lambda_function" {
   }
 
   layers = ["arn:aws:lambda:${var.aws_region}:634166935893:layer:vault-lambda-extension:16"]
+}
+
+data "archive_file" "zip_lambda" {
+  type        = "zip"
+  source_dir  = "${path.root}/handler/"
+  output_path = "${path.root}/handler/lambda.zip"
 }
 
 module "lambda_execution_role" {
