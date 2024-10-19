@@ -40,9 +40,7 @@ resource "vault_auth_backend" "aws" {
 }
 
 resource "vault_aws_auth_backend_client" "backend_client" {
-  backend = vault_auth_backend.aws.path
-  # sts_region   = var.aws_region
-  # sts_endpoint = "https://sts.${var.aws_region}.amazonaws.com"
+  backend    = vault_auth_backend.aws.path
   depends_on = [aws_lambda_function.lambda_function]
 }
 
@@ -60,7 +58,7 @@ data "vault_policy_document" "read_lambda_api_keys" {
 
 resource "vault_aws_auth_backend_role" "vault_lambda_role" {
   backend                  = vault_auth_backend.aws.path
-  role                     = "vault-lambda-role"
+  role                     = module.lambda_execution_role.iam_role_name
   auth_type                = "iam"
   resolve_aws_unique_ids   = false
   bound_iam_principal_arns = [module.lambda_execution_role.iam_role_arn]
