@@ -2,10 +2,6 @@
   "name": "vault-lambda",
   "version": "1.0.0",
   "description": "lambda app to cread dynamic db credentials from vault",
-  "main": "index.mjs",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "awesome"
   ],
