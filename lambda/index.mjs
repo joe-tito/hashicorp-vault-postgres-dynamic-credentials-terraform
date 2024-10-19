@@ -23,7 +23,7 @@ export const handler = async (event, context) => {
             namespace: 'admin'
         })
 
-        const secret = await vault.read('database/cred/demo-role');
+        const secret = await vault.read('database/creds/demo-role');
         
         console.log(secret);
 
