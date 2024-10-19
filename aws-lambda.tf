@@ -5,7 +5,7 @@ module "lambda_function" {
   function_name = "vault-lambda-function"
   handler       = "index.handler"
   source_path   = "./handler"
-  runtime       = "nodejs18.x"
+  runtime       = "nodejs20.x"
   memory_size   = "128"
   create_role   = false
   lambda_role   = module.lambda_execution_role.iam_role_arn
