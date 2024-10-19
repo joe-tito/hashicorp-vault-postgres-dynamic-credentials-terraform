@@ -48,7 +48,7 @@ module "lambda_function" {
 
   function_name = "vault-lambda-function"
   handler       = "index.handler"
-  source_path   = "./lambda/handler"
+  source_path   = "./handler"
   runtime       = "nodejs18.x"
   memory_size   = "128"
   create_role   = false
