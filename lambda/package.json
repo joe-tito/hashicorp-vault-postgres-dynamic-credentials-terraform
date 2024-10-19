@@ -1,7 +1,7 @@
 {
   "name": "vault-lambda",
   "version": "1.0.0",
-  "description": "lambda app to cread dynamic db credentials from vault",
+  "description": "lambda app to create dynamic db credentials from vault",
   "keywords": [
     "awesome"
   ],
