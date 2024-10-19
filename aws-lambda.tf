@@ -18,8 +18,6 @@
 # }
 
 resource "aws_lambda_function" "lambda_function" {
-  # If the file is not in the current working directory you will need to include a
-  # path.module in the filename.
   filename      = "${path.module}/lambda/lambda.zip"
   function_name = "vault-lambda-function"
   role          = module.lambda_execution_role.iam_role_arn
@@ -39,6 +37,7 @@ resource "aws_lambda_function" "lambda_function" {
       VAULT_SECRET_PATH   = "database/creds/demo-role"
       VAULT_SECRET_FILE   = "/tmp/vault_secret.json",
       VAULT_NAMESPACE     = "admin"
+      VAULT_TOKEN         = var.vault_token
     }
   }
 }
