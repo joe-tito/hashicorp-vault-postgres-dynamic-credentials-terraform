@@ -14,9 +14,12 @@ export const handler = async (event, context) => {
     console.log(secret);
 
     return {
-        username: secret.data.username,
-        password: secret.data.password,
-        message: 'Seriously, don\'t do this IRL'
+        
+        message: 'This is for demo purposes. Seriously, don\'t do this IRL. ',
+        credentials: {
+            username: secret.data.username,
+            password: secret.data.password,
+        }
     }
     
 }
