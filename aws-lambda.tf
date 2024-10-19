@@ -3,8 +3,8 @@ module "lambda_function" {
   version = "~>5.3"
 
   function_name = "vault-lambda-function"
-  handler       = "handler/index.handler"
-  source_path   = "${path.root}/lambda.zip"
+  handler       = "index.handler"
+  source_path   = "./handler"
   runtime       = "nodejs20.x"
   memory_size   = "128"
   create_role   = false
