@@ -27,6 +27,8 @@ export const handler = async function(event, context) {
 
         const secret = await readFromProxyServer();
 
+        console.log(secret);
+
         console.log(`secret1: ${secret.data.data['secret1']}`);
         console.log(`secret2: ${secret.data.data['secret2']}`);
     }
