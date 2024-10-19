@@ -19,7 +19,8 @@ const readFromProxyServer = async () => {
     return await vault.read(VAULT_SECRET_PATH);
 }
 
-export const handler = async function(event, context) {
+export const handler = async (event, context) => {
+    
     console.log("Reading Data")
 
     try {
