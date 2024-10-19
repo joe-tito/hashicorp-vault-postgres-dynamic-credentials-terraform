@@ -7,7 +7,7 @@
   ],
   "author": "joe-tito",
   "license": "ISC",
-  "main": "index.js",
+  "main": "index.mjs",
   "dependencies": {
     "node-vault": "^0.10.2"
   }
