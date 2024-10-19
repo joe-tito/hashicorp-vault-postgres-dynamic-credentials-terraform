@@ -5,7 +5,9 @@ const {
     VAULT_PROXY_SERVER_HOST
 } = process.env;
 
-const readFromProxyServer = async () => {
+
+export const handler = async (event, context) => {
+
     const vault = Vault({
         apiVersion: 'v1',
         endpoint: VAULT_PROXY_SERVER_HOST,
@@ -16,17 +18,13 @@ const readFromProxyServer = async () => {
             }
         }
     });
-    return await vault.read(VAULT_SECRET_PATH);
-}
-
-export const handler = async (event, context) => {
     
     console.log("Reading Data")
 
     try {
         console.log("Read From Proxy Server")
 
-        const secret = await readFromProxyServer();
+        const secret = await vault.read(VAULT_SECRET_PATH);
 
         console.log(secret);
 
