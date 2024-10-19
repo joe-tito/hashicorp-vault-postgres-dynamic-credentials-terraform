@@ -59,7 +59,7 @@ module "lambda_function" {
     VAULT_AUTH_PROVIDER       = "aws"
     VAULT_AUTH_ROLE           = module.lambda_execution_role.iam_role_name #Use the same name as the Lambda role name
     VAULT_STS_ENDPOINT_REGION = var.aws_region
-    VAULT_SECRET_PATH         = "database/creds/demo-role"
+    VAULT_SECRET_PATH         = "admin/database/creds/demo-role"
     VAULT_PROXY_SERVER_HOST   = "http://127.0.0.1:8200"
     VAULT_API_VERSION         = "v1"
     VAULT_NAMESPACE           = "admin"
