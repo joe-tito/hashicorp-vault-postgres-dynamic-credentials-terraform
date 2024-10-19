@@ -10,6 +10,13 @@ export const handler = async (event, context) => {
     })
 
     const secret = await vault.read('database/creds/demo-role');
-    
+
     console.log(secret);
+
+    return {
+        username: secret.data.username,
+        password: secret.data.password,
+        message: 'Seriously, don\'t do this IRL'
+    }
+    
 }
