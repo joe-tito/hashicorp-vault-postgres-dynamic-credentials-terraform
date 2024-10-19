@@ -20,6 +20,7 @@ export const handler = async (event, context) => {
     });
     
     console.log("Reading Data")
+    console.log(VAULT_SECRET_PATH);
 
     try {
         console.log("Read From Proxy Server")
