@@ -62,6 +62,7 @@ module "lambda_function" {
     VAULT_SECRET_PATH         = "database/creds/demo-role"
     VAULT_PROXY_SERVER_HOST   = "http://127.0.0.1:8200"
     VAULT_API_VERSION         = "v1"
+    VAULT_NAMESPACE           = "admin"
   }
 
   layers = ["arn:aws:lambda:${var.aws_region}:634166935893:layer:vault-lambda-extension:16"]
