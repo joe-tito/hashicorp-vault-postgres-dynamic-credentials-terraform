@@ -21,6 +21,8 @@ resource "aws_lambda_function" "lambda_function" {
       VAULT_TOKEN = var.vault_token # // Using token for demo purposes. Use more secure auth (i.e., IAM) in practice
     }
   }
+
+  depends_on = [hcp_vault_cluster.demo_cluster]
 }
 
 // Create a public URL for the lambda funciton
