@@ -24,7 +24,7 @@ resource "aws_security_group" "all_inbound" {
     to_port   = 5432
     protocol  = "tcp"
 
-    cidr_blocks = ["75.68.149.137/32"] # Only allow my IP for demo
+    cidr_blocks = ["75.68.149.137/32", hcp_hvn.demo_hvn.cidr_block] # Only allow my IP for demo
   }
 }
 
