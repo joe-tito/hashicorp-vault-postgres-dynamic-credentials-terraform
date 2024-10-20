@@ -38,6 +38,7 @@ resource "aws_db_instance" "default" {
   username            = var.postgres_user
   password            = var.postgres_password
   publicly_accessible = true # Exposing for demo purposes, probably don't do this in practice
+  skip_final_snapshot = true
 
   vpc_security_group_ids = [
     aws_security_group.all_inbound.id
