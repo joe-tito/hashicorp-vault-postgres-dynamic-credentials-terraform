@@ -15,7 +15,7 @@ export const handler = async (event, context) => {
 
     return {
         
-        message: 'This is for demo purposes. Seriously, don\'t do this IRL. ',
+        message: 'This is for demo purposes. Seriously, don\'t ever do this.',
         credentials: {
             username: secret.data.username,
             password: secret.data.password,
