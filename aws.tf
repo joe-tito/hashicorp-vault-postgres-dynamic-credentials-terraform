@@ -24,7 +24,7 @@ resource "aws_security_group" "all_inbound" {
     to_port   = 5432
     protocol  = "tcp"
 
-    cidr_blocks = ["75.68.149.137/32", "3.86.209.134/32"] # Only allow my IP and traffic from HVN for demo
+    cidr_blocks = ["75.68.149.137/32", "3.86.209.134/32"] # Only allow my IP and traffic from Vault cluster for demo
   }
 }
 
