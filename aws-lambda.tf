@@ -18,6 +18,7 @@ resource "aws_lambda_function" "lambda_function" {
 
   environment {
     variables = {
+      VAULT_URL   = hcp_vault_cluster.demo_cluster.public_endpoint
       VAULT_TOKEN = var.vault_token # // Using token for demo purposes. Use more secure auth (i.e., IAM) in practice
     }
   }
