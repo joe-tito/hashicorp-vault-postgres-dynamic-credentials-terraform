@@ -27,10 +27,10 @@ data "archive_file" "zip_lambda" {
 # }
 
 // Create a public URL for the lambda funciton
-resource "aws_lambda_function_url" "lambda_function_url" {
-  function_name      = aws_lambda_function.lambda_function.arn
-  authorization_type = "NONE"
-}
+# resource "aws_lambda_function_url" "lambda_function_url" {
+#   function_name      = aws_lambda_function.lambda_function.arn
+#   authorization_type = "NONE"
+# }
 
 // Create IAM role with permissions for lambda
 module "lambda_execution_role" {
